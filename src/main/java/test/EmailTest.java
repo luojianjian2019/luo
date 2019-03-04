@@ -23,13 +23,13 @@ import domain.Employee;
 
 public class EmailTest {
 	
-	//·¢¼şÈËµØÖ·
+	//å‘ä»¶äººåœ°å€
     public static String senderAddress = "13852242374@163.com";
-    //ÊÕ¼şÈËµØÖ·
+    //æ”¶ä»¶äººåœ°å€
    // public static String recipientAddress = "1475859572@qq.com";
-    //·¢¼şÈËÕË»§Ãû
+    //å‘ä»¶äººè´¦æˆ·å
     public static String senderAccount = "13852242374@163.com";
-    //·¢¼şÈËÕË»§ÃÜÂë
+    //å‘ä»¶äººè´¦æˆ·å¯†ç 
     public static String senderPassword = "bao123456";
 
 	/**
@@ -45,23 +45,23 @@ public class EmailTest {
         	for(final Employee e:empList){
         		Calendar birthday = Calendar.getInstance();
         		birthday.setTime(e.getBirthday());
-        		if(today.get(Calendar.MONTH)==birthday.get(Calendar.MONTH) && today.get(Calendar.DAY_OF_MONTH)==birthday.get(Calendar.DAY_OF_MONTH)){ //ÅĞ¶Ï birthday is today
+        		if(today.get(Calendar.MONTH)==birthday.get(Calendar.MONTH) && today.get(Calendar.DAY_OF_MONTH)==birthday.get(Calendar.DAY_OF_MONTH)){ //åˆ¤æ–­ birthday is today
         			
         			new Thread(){
         				public void run(){
-        					//1¡¢Á¬½ÓÓÊ¼ş·şÎñÆ÷µÄ²ÎÊıÅäÖÃ
+        					//1ã€è¿æ¥é‚®ä»¶æœåŠ¡å™¨çš„å‚æ•°é…ç½®
         			        Properties props = new Properties();
-        			        //ÉèÖÃÓÃ»§µÄÈÏÖ¤·½Ê½
+        			        //è®¾ç½®ç”¨æˆ·çš„è®¤è¯æ–¹å¼
         			        props.setProperty("mail.smtp.auth", "true");
-        			        //ÉèÖÃ´«ÊäĞ­Òé
+        			        //è®¾ç½®ä¼ è¾“åè®®
         			        props.setProperty("mail.transport.protocol", "smtp");
-        			        //ÉèÖÃ·¢¼şÈËµÄSMTP·şÎñÆ÷µØÖ·
+        			        //è®¾ç½®å‘ä»¶äººçš„SMTPæœåŠ¡å™¨åœ°å€
         			        props.setProperty("mail.smtp.host", "smtp.163.com");
-        			        //2¡¢´´½¨¶¨ÒåÕû¸öÓ¦ÓÃ³ÌĞòËùĞèµÄ»·¾³ĞÅÏ¢µÄ Session ¶ÔÏó
+        			        //2ã€åˆ›å»ºå®šä¹‰æ•´ä¸ªåº”ç”¨ç¨‹åºæ‰€éœ€çš„ç¯å¢ƒä¿¡æ¯çš„ Session å¯¹è±¡
         			        Session session = Session.getInstance(props);
-        			        //ÉèÖÃµ÷ÊÔĞÅÏ¢ÔÚ¿ØÖÆÌ¨´òÓ¡³öÀ´
+        			        //è®¾ç½®è°ƒè¯•ä¿¡æ¯åœ¨æ§åˆ¶å°æ‰“å°å‡ºæ¥
         			        session.setDebug(true);
-        			        //3¡¢´´½¨ÓÊ¼şµÄÊµÀı¶ÔÏó
+        			        //3ã€åˆ›å»ºé‚®ä»¶çš„å®ä¾‹å¯¹è±¡
         			        Message msg = null;
 							try {
 								msg = getMimeMessage(session,e.getLastName(),e.getEamil());
@@ -69,7 +69,7 @@ public class EmailTest {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
-        			        //4¡¢¸ù¾İsession¶ÔÏó»ñÈ¡ÓÊ¼ş´«Êä¶ÔÏóTransport
+        			        //4ã€æ ¹æ®sessionå¯¹è±¡è·å–é‚®ä»¶ä¼ è¾“å¯¹è±¡Transport
         			        Transport transport=null;
 							try {
 								transport = session.getTransport();
@@ -77,14 +77,14 @@ public class EmailTest {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
-        			        //ÉèÖÃ·¢¼şÈËµÄÕË»§ÃûºÍÃÜÂë
+        			        //è®¾ç½®å‘ä»¶äººçš„è´¦æˆ·åå’Œå¯†ç 
         			        try {
 								transport.connect(senderAccount, senderPassword);
 							} catch (MessagingException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
-        			        //·¢ËÍÓÊ¼ş£¬²¢·¢ËÍµ½ËùÓĞÊÕ¼şÈËµØÖ·
+        			        //å‘é€é‚®ä»¶ï¼Œå¹¶å‘é€åˆ°æ‰€æœ‰æ”¶ä»¶äººåœ°å€
         			        try {
 								transport.sendMessage(msg,msg.getAllRecipients());
 							} catch (MessagingException e) {
@@ -92,10 +92,10 @@ public class EmailTest {
 								e.printStackTrace();
 							}
         			         
-        			        //Èç¹ûÖ»Ïë·¢ËÍ¸øÖ¸¶¨µÄÈË£¬¿ÉÒÔÈçÏÂĞ´·¨
+        			        //å¦‚æœåªæƒ³å‘é€ç»™æŒ‡å®šçš„äººï¼Œå¯ä»¥å¦‚ä¸‹å†™æ³•
         			        //transport.sendMessage(msg, new Address[]{new InternetAddress("xxx@qq.com")});
         			         
-        			        //5¡¢¹Ø±ÕÓÊ¼şÁ¬½Ó
+        			        //5ã€å…³é—­é‚®ä»¶è¿æ¥
         			        try {
 								transport.close();
 							} catch (MessagingException e) {
@@ -113,7 +113,7 @@ public class EmailTest {
    
 	}
 	
-	//¶ÁÎÄ¼ş
+	//è¯»æ–‡ä»¶
 	public static List<Employee> readFile() {
         File file=new File("d:/employee_records.txt");
         BufferedReader reader=null;
@@ -153,30 +153,30 @@ public class EmailTest {
     }
 	
 	/**
-     * »ñµÃ´´½¨Ò»·âÓÊ¼şµÄÊµÀı¶ÔÏó
+     * è·å¾—åˆ›å»ºä¸€å°é‚®ä»¶çš„å®ä¾‹å¯¹è±¡
      * @param session
      * @return
      * @throws MessagingException
      * @throws AddressException
      */
     public static MimeMessage getMimeMessage(Session session,String name,String address) throws Exception{
-        //´´½¨Ò»·âÓÊ¼şµÄÊµÀı¶ÔÏó
+        //åˆ›å»ºä¸€å°é‚®ä»¶çš„å®ä¾‹å¯¹è±¡
         MimeMessage msg = new MimeMessage(session);
-        //ÉèÖÃ·¢¼şÈËµØÖ·
+        //è®¾ç½®å‘ä»¶äººåœ°å€
         msg.setFrom(new InternetAddress(senderAddress));
         /**
-         * ÉèÖÃÊÕ¼şÈËµØÖ·£¨¿ÉÒÔÔö¼Ó¶à¸öÊÕ¼şÈË¡¢³­ËÍ¡¢ÃÜËÍ£©£¬¼´ÏÂÃæÕâÒ»ĞĞ´úÂëÊéĞ´¶àĞĞ
-         * MimeMessage.RecipientType.TO:·¢ËÍ
-         * MimeMessage.RecipientType.CC£º³­ËÍ
-         * MimeMessage.RecipientType.BCC£ºÃÜËÍ
+         * è®¾ç½®æ”¶ä»¶äººåœ°å€ï¼ˆå¯ä»¥å¢åŠ å¤šä¸ªæ”¶ä»¶äººã€æŠ„é€ã€å¯†é€ï¼‰ï¼Œå³ä¸‹é¢è¿™ä¸€è¡Œä»£ç ä¹¦å†™å¤šè¡Œ
+         * MimeMessage.RecipientType.TO:å‘é€
+         * MimeMessage.RecipientType.CCï¼šæŠ„é€
+         * MimeMessage.RecipientType.BCCï¼šå¯†é€
          */
         msg.setRecipient(MimeMessage.RecipientType.TO,new InternetAddress(address));
         msg.setRecipient(MimeMessage.RecipientType.CC,new InternetAddress(senderAddress));
-        //ÉèÖÃÓÊ¼şÖ÷Ìâ
-        msg.setSubject("ÉúÈÕ¿ìÀÖ!","UTF-8"); //ÓÃÓ¢ÎÄ Happy birthday£¬ÊÕ²»µ½ÓÊ¼ş¡£
-        //ÉèÖÃÓÊ¼şÕıÎÄ
+        //è®¾ç½®é‚®ä»¶ä¸»é¢˜
+        msg.setSubject("Happy birthday!","UTF-8");
+        //è®¾ç½®é‚®ä»¶æ­£æ–‡
         msg.setContent("Happy birthday,dear "+name, "text/html;charset=UTF-8");
-        //ÉèÖÃÓÊ¼şµÄ·¢ËÍÊ±¼ä,Ä¬ÈÏÁ¢¼´·¢ËÍ
+        //è®¾ç½®é‚®ä»¶çš„å‘é€æ—¶é—´,é»˜è®¤ç«‹å³å‘é€
         msg.setSentDate(new Date());
          
         return msg;
